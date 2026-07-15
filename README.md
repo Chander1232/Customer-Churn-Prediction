@@ -1,91 +1,437 @@
-<<<<<<< HEAD
-# IBM Telco Customer Churn Prediction
-[![Made with Jupyter](https://img.shields.io/badge/Made%20with-Jupyter-orange?logo=Jupyter)](https://jupyter.org/try) [![Open in HTML](https://img.shields.io/badge/Html-Open%20Notebook-blue?logo=HTML5)](https://nbviewer.org/github/ahmedshahriar/Customer-Churn-Prediction/blob/main/Telco-Customer-Churn-Prediction.html) [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/ahmedshahriar/Customer-Churn-Prediction/main) [![Live in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://share.streamlit.io//ahmedshahriar/Telco-Customer-Churn-Prediction-Streamlit-App/main/app.py)
+# 📊 Customer Churn Prediction using Machine Learning
 
-The objective of this notebook is to present an extensive analysis of the **IBM Customer Churn Dataset** and to predict the customer churn rate.
+<p align="center">
+  <img src="https://img.shields.io/badge/Python-3.10-blue?style=for-the-badge&logo=python"/>
+  <img src="https://img.shields.io/badge/Machine%20Learning-CatBoost-orange?style=for-the-badge"/>
+  <img src="https://img.shields.io/badge/LightGBM-Gradient%20Boosting-green?style=for-the-badge"/>
+  <img src="https://img.shields.io/badge/Optuna-Hyperparameter%20Optimization-red?style=for-the-badge"/>
+  <img src="https://img.shields.io/badge/Status-Completed-success?style=for-the-badge"/>
+</p>
 
-### Dataset Source 
+---
 
-* [Kaggle Dataset URL](https://www.kaggle.com/blastchar/telco-customer-churn)
-* [GitHub Dataset URL](https://github.com/IBM/telco-customer-churn-on-icp4d/tree/master/data)
+# 📌 Overview
 
-### Streamlit App repository 
-* [Telco Customer Churn Prediction Streamlit App](https://github.com/ahmedshahriar/Telco-Customer-Churn-Prediction-Streamlit-App)
+Customer churn is one of the biggest challenges faced by telecom companies. Losing existing customers directly impacts revenue and significantly increases customer acquisition costs.
 
-### You can also view this notebook on kaggle
-1. [Churn Prediction I : EDA+Statistical Analysis](https://www.kaggle.com/ahmedshahriarsakib/churn-prediction-i-eda-statistical-analysis)
-2. [Churn Prediction II : Triple Boost Stacking+  Optuna](https://www.kaggle.com/ahmedshahriarsakib/churn-prediction-ii-triple-boost-stacking-optuna)
+This project leverages **Machine Learning**, **CatBoost**, and **LightGBM** to accurately predict customers who are likely to discontinue telecom services. By identifying high-risk customers early, businesses can launch targeted retention campaigns, improve customer satisfaction, and maximize customer lifetime value.
 
-### This project also serves as assignments for the courses below - 
-1. [IBM Exploratory Data Analysis for Machine Learning](https://www.coursera.org/learn/ibm-exploratory-data-analysis-for-machine-learning?specialization=ibm-machine-learning)
-2. [IBM Supervised Machine Learning: Classification](https://www.coursera.org/learn/supervised-machine-learning-classification?specialization=ibm-machine-learning)
+The project analyzes over **7,000 telecom customer records**, performs comprehensive exploratory data analysis (EDA), engineers meaningful features, trains multiple gradient boosting models, and generates accurate churn predictions with explainable insights.
 
-## Summary
+---
 
-* Dataset mostly has categorical variables
-* Data is not normally distributed, performed Nonparametric Statistical tests
-* Performed statistical hypothesis test to check correlation , multicollinearity
-* Imbalanced dataset, did experiment with different sampling techniques(e.g stratifying, imblearn - SMOTE etc)
-* Tuned Hyperparameters using Optuna
-* Performed single level Stacking Ensemble with Triple Gradient boosting algorithms and classic algorithms
-* Number of months the customer has stayed with the company (tenure) and the contract term of the customer (contract) are the most important features that have strong correlation with churn of the customer
-* Results from statiscial hypotheses testing reflects similarity with model feature importance
-* With 80/20 train/test split triple boosting stacking ensemble model achieved an AUC of ~0.85
+# 🎯 Business Problem
 
-### Built With
+Telecommunication companies lose millions of dollars every year because customers switch to competitors.
 
-```
-optuna==2.10.0
-xgboost==0.90
-catboost==1.0.1
-lightgbm==2.2.3
-plotly==4.4.1
-scipy==1.7.1
-scikit-learn==0.22.2.post1
-```
-=======
-# IBM Telco Customer Churn Prediction
-[![Made with Jupyter](https://img.shields.io/badge/Made%20with-Jupyter-orange?logo=Jupyter)](https://jupyter.org/try) [![Open in HTML](https://img.shields.io/badge/Html-Open%20Notebook-blue?logo=HTML5)](https://nbviewer.org/github/ahmedshahriar/Customer-Churn-Prediction/blob/main/Telco-Customer-Churn-Prediction.html) [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/ahmedshahriar/Customer-Churn-Prediction/main) [![Live in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://share.streamlit.io//ahmedshahriar/Telco-Customer-Churn-Prediction-Streamlit-App/main/app.py)
+Traditional retention strategies react **after customers leave**, making them costly and inefficient.
 
-The objective of this notebook is to present an extensive analysis of the **IBM Customer Churn Dataset** and to predict the customer churn rate.
+This project predicts customer churn **before it happens**, allowing organizations to:
 
-### Dataset Source 
+- Identify customers at high risk of leaving
+- Understand why customers churn
+- Improve customer retention
+- Reduce acquisition costs
+- Increase customer lifetime value
+- Support data-driven business decisions
 
-* [Kaggle Dataset URL](https://www.kaggle.com/blastchar/telco-customer-churn)
-* [GitHub Dataset URL](https://github.com/IBM/telco-customer-churn-on-icp4d/tree/master/data)
+---
 
-### Streamlit App repository 
-* [Telco Customer Churn Prediction Streamlit App](https://github.com/ahmedshahriar/Telco-Customer-Churn-Prediction-Streamlit-App)
+# 🚀 Features
 
-### You can also view this notebook on kaggle
-1. [Churn Prediction I : EDA+Statistical Analysis](https://www.kaggle.com/ahmedshahriarsakib/churn-prediction-i-eda-statistical-analysis)
-2. [Churn Prediction II : Triple Boost Stacking+  Optuna](https://www.kaggle.com/ahmedshahriarsakib/churn-prediction-ii-triple-boost-stacking-optuna)
+- Customer Churn Prediction
+- Customer Risk Scoring
+- Exploratory Data Analysis
+- Feature Engineering
+- Data Preprocessing Pipeline
+- CatBoost Model
+- LightGBM Model
+- Hyperparameter Optimization using Optuna
+- Feature Importance Analysis
+- ROC Curve
+- Precision-Recall Curve
+- Confusion Matrix
+- Cross Validation
+- Business Insights Dashboard
+- Interactive Visualizations
 
-### This project also serves as assignments for the courses below - 
-1. [IBM Exploratory Data Analysis for Machine Learning](https://www.coursera.org/learn/ibm-exploratory-data-analysis-for-machine-learning?specialization=ibm-machine-learning)
-2. [IBM Supervised Machine Learning: Classification](https://www.coursera.org/learn/supervised-machine-learning-classification?specialization=ibm-machine-learning)
+---
 
-## Summary
-
-* Dataset mostly has categorical variables
-* Data is not normally distributed, performed Nonparametric Statistical tests
-* Performed statistical hypothesis test to check correlation , multicollinearity
-* Imbalanced dataset, did experiment with different sampling techniques(e.g stratifying, imblearn - SMOTE etc)
-* Tuned Hyperparameters using Optuna
-* Performed single level Stacking Ensemble with Triple Gradient boosting algorithms and classic algorithms
-* Number of months the customer has stayed with the company (tenure) and the contract term of the customer (contract) are the most important features that have strong correlation with churn of the customer
-* Results from statiscial hypotheses testing reflects similarity with model feature importance
-* With 80/20 train/test split triple boosting stacking ensemble model achieved an AUC of ~0.85
-
-### Built With
+# 🏗 Project Architecture
 
 ```
-optuna==2.10.0
-xgboost==0.90
-catboost==1.0.1
-lightgbm==2.2.3
-plotly==4.4.1
-scipy==1.7.1
-scikit-learn==0.22.2.post1
+Customer Dataset
+        │
+        ▼
+Data Preprocessing
+        │
+        ▼
+Exploratory Data Analysis
+        │
+        ▼
+Feature Engineering
+        │
+        ▼
+Train-Test Split
+        │
+        ▼
+Model Training
+ ├── CatBoost
+ └── LightGBM
+        │
+        ▼
+Hyperparameter Optimization
+        │
+        ▼
+Model Evaluation
+        │
+        ▼
+Customer Churn Prediction
+        │
+        ▼
+Business Insights
 ```
->>>>>>> ebe8f3ccae65efebe483bc3a8763c145a3a68998
+
+---
+
+# 📂 Dataset Information
+
+**Dataset:** Telco Customer Churn Dataset
+
+### Dataset Statistics
+
+| Property | Value |
+|-----------|--------|
+| Records | 7043 |
+| Features | 21 |
+| Target | Churn |
+| Domain | Telecommunications |
+
+### Important Features
+
+- Gender
+- Senior Citizen
+- Partner
+- Dependents
+- Tenure
+- Phone Service
+- Internet Service
+- Online Security
+- Device Protection
+- Tech Support
+- Streaming TV
+- Streaming Movies
+- Contract Type
+- Payment Method
+- Monthly Charges
+- Total Charges
+
+---
+
+# 🛠 Technology Stack
+
+## Programming Language
+
+- Python 3.10
+
+## Libraries
+
+- Pandas
+- NumPy
+- Matplotlib
+- Seaborn
+- Plotly
+- Scikit-learn
+- CatBoost
+- LightGBM
+- Optuna
+- Graphviz
+
+---
+
+# ⚙ Machine Learning Workflow
+
+## 1. Data Collection
+
+- Load Telco Customer Dataset
+- Verify dataset quality
+
+---
+
+## 2. Data Cleaning
+
+- Handle missing values
+- Remove duplicates
+- Data type conversion
+- Data validation
+
+---
+
+## 3. Exploratory Data Analysis
+
+- Churn Distribution
+- Customer Demographics
+- Correlation Analysis
+- Service Usage Analysis
+- Contract Analysis
+- Monthly Charges Analysis
+
+---
+
+## 4. Feature Engineering
+
+- Encoding categorical variables
+- Scaling numerical features
+- Feature transformation
+- Feature selection
+
+---
+
+## 5. Model Training
+
+Models used:
+
+- CatBoost Classifier
+- LightGBM Classifier
+
+---
+
+## 6. Hyperparameter Optimization
+
+Optimized using:
+
+- Optuna
+
+Optimized Parameters:
+
+- Learning Rate
+- Tree Depth
+- Number of Estimators
+- Regularization
+- Iterations
+
+---
+
+## 7. Model Evaluation
+
+Evaluation Metrics:
+
+- Accuracy
+- Precision
+- Recall
+- F1 Score
+- ROC-AUC
+- PR-AUC
+- Cross Validation Score
+
+---
+
+# 📈 Visualizations
+
+The project generates various business-focused visualizations including:
+
+- Dataset Preview
+- Dataset Information
+- Churn Distribution
+- Correlation Heatmap
+- Contract Analysis
+- Streaming Services Analysis
+- Demographic Analysis
+- Feature Importance
+- Precision Recall Curve
+- ROC Curve
+- Cross Validation Comparison
+
+---
+
+# 📊 Key Insights
+
+The model identified several important churn drivers:
+
+- Contract Type
+- Customer Tenure
+- Monthly Charges
+- Online Security
+- Tech Support
+- Internet Service
+- Payment Method
+
+Business findings include:
+
+- Customers with month-to-month contracts are more likely to churn.
+- Longer-tenure customers have lower churn rates.
+- Customers without online security or technical support are more likely to leave.
+- Monthly charges significantly influence customer retention.
+- Value-added services improve customer loyalty.
+
+---
+
+# 📌 Model Performance
+
+| Metric | Performance |
+|---------|-------------|
+| Accuracy | 80%+ |
+| ROC-AUC | 0.85+ |
+| PR-AUC | 0.659 |
+| Cross Validation | Stable Across Models |
+
+---
+
+# 📂 Project Structure
+
+```
+Customer-Churn-Prediction/
+│
+├── data/
+│   └── Telco-Customer-Churn.csv
+│
+├── notebooks/
+│   └── Telco-Customer-Churn-Prediction.ipynb
+│
+├── models/
+│
+├── images/
+│
+├── requirements.txt
+│
+├── README.md
+│
+└── LICENSE
+```
+
+---
+
+# 💻 Installation
+
+Clone the repository
+
+```bash
+git clone https://github.com/your-username/customer-churn-prediction.git
+```
+
+Move into the project directory
+
+```bash
+cd customer-churn-prediction
+```
+
+Create a virtual environment
+
+```bash
+python -m venv venv
+```
+
+Activate virtual environment
+
+### Windows
+
+```bash
+venv\Scripts\activate
+```
+
+### Linux / Mac
+
+```bash
+source venv/bin/activate
+```
+
+Install dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+Launch Jupyter Notebook
+
+```bash
+jupyter notebook
+```
+
+---
+
+# ▶ Run the Project
+
+Open
+
+```
+Telco-Customer-Churn-Prediction.ipynb
+```
+
+Run all notebook cells.
+
+The notebook will automatically:
+
+- Load the dataset
+- Perform preprocessing
+- Generate EDA
+- Train machine learning models
+- Evaluate performance
+- Predict customer churn
+- Display business insights
+
+---
+
+# 📈 Business Value
+
+This solution enables telecom organizations to:
+
+- Predict customer churn proactively
+- Improve customer retention strategies
+- Reduce revenue loss
+- Increase customer lifetime value
+- Lower acquisition costs
+- Improve customer satisfaction
+- Support data-driven decision making
+
+---
+
+# 🔮 Future Enhancements
+
+- Deep Learning Models
+- Explainable AI (SHAP/LIME)
+- Real-Time Prediction API
+- Customer Retention Recommendation Engine
+- Streamlit Dashboard
+- Power BI Dashboard
+- Automated Model Retraining
+- Cloud Deployment
+- Docker Support
+- CI/CD Pipeline
+
+---
+
+# 👨‍💻 Skills Demonstrated
+
+- Machine Learning
+- Predictive Analytics
+- Classification Models
+- Data Preprocessing
+- Feature Engineering
+- Hyperparameter Optimization
+- Exploratory Data Analysis
+- Business Intelligence
+- Statistical Analysis
+- Data Visualization
+- Model Evaluation
+- Customer Analytics
+
+---
+
+# 📚 References
+
+- Scikit-learn Documentation
+- CatBoost Documentation
+- LightGBM Documentation
+- Optuna Documentation
+- Pandas Documentation
+- NumPy Documentation
+
+---
+
+# ⭐ If you found this project useful, consider giving it a Star!
+
+```
+
+---
+
+This README was created from the complete **Customer Churn Prediction PRD (22 pages)** and includes the project's objectives, architecture, ML workflow, technology stack, dataset details, evaluation metrics, business value, and setup instructions. :contentReference[oaicite:1]{index=1}
